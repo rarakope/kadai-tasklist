@@ -1,6 +1,14 @@
-<div class="center jumbotron">
-  <div class="text-center">
-    <h1>Welcome to the Tasklist</h1>
-    <%= link_to 'Sign up now!', signup_path, class: 'btn btn-lg btn-primary' %>
+<% if logged_in? %>
+  <p>ログイン完了ユーザ: <%= current_user.name %></p>
+  <%= link_to 'Logout', logout_path, method: :delete %>
+<% else %>
+  <div class="center jumbotron">
+    <div class="text-center">
+      <h1>Welcome to the Tasklist</h1>
+      <%= link_to 'Sign up now!', signup_path, class: 'btn btn-lg btn-primary' %>
+    </div>
   </div>
-</div>
+  <ul>
+    <li class="nav-item"><%= link_to 'Login', login_path, class: 'nav-link' %></li>
+  </ul>
+<% end %>
