@@ -1,14 +1,27 @@
 <% if logged_in? %>
-  <p>ログイン完了ユーザ: <%= current_user.name %></p>
-  <%= link_to 'Logout', logout_path, method: :delete %>
+  <div class="row">
+    <aside class="col-sm-4">
+      <%= form_with(model: @task, local: true) do |f| %>
+        <div class="form-group">
+          <%= f.text_field :status %>
+          <%= f.text_area :content %>
+        </div>
+        <%= f.submit 'Post', class: 'btn btn-primary btn-block' %>
+      <% end %>
+    </aside>
+    <div class="col-sm-8">
+      <%= render 'tasks/tasks', tasks: @tasks %>
+    </div>
+    <%= link_to 'Logout', logout_path, method: :delete %>
+  </div>
 <% else %>
   <div class="center jumbotron">
     <div class="text-center">
       <h1>Welcome to the Tasklist</h1>
-      <%= link_to 'Sign up now!', signup_path, class: 'btn btn-lg btn-primary' %>
+      <ul>
+        <li><%= link_to 'Sign up now!', signup_path, class: 'btn btn-lg btn-primary' %></li>
+        <li><%= link_to 'Login', login_path, class: 'nav-link' %></li>
+      </ul>
     </div>
   </div>
-  <ul>
-    <li class="nav-item"><%= link_to 'Login', login_path, class: 'nav-link' %></li>
-  </ul>
 <% end %>
