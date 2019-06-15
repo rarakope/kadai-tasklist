@@ -3,14 +3,20 @@
     <aside class="col-sm-4">
       <%= form_with(model: @task, local: true) do |f| %>
         <div class="form-group">
+          <%= f.label 'ステータス' %>
           <%= f.text_field :status %>
+        </div>
+        <div>
+          <%= f.label 'タスク' %>
           <%= f.text_area :content %>
         </div>
         <%= f.submit 'Post', class: 'btn btn-primary btn-block' %>
+        
       <% end %>
     </aside>
     <div class="col-sm-8">
       <%= render 'tasks/tasks', tasks: @tasks %>
+      
     </div>
     <%= link_to 'Logout', logout_path, method: :delete %>
   </div>
